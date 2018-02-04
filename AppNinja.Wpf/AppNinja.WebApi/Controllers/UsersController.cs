@@ -28,5 +28,11 @@ namespace AppNinja.WebApi.Controllers
         {
             return Ok(await usersService.GetUsersListAsync(Id));
         }
+
+        [Route("api/users/otro")]
+        public async Task<IHttpActionResult> GetOtro()
+        {
+            return Ok(await usersService.GetOtro());
+        }
     }
 }

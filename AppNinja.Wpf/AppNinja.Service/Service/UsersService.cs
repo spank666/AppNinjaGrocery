@@ -36,13 +36,24 @@ namespace AppNinja.Service.Service
         {
             //return db.SP_USERS_QUERY(1).ToList().Single();
             //return db.SP_USERS_QUERY(1).ToList();
-            /*System.Data.SqlClient.SqlParameter[] p = new System.Data.SqlClient.SqlParameter[1];
-            p[0] = new System.Data.SqlClient.SqlParameter("InsertedById", 1);
-            p[0].DbType = DbType.Int32;*/
             SqlParameter p = new SqlParameter("@InsertedById", SqlDbType.Int);
             p.Value = Id;
 
             return await db.Database.SqlQuery<SP_USERS_QUERY_Result>("SP_USERS_QUERY @InsertedById", p).ToListAsync();
+        }
+
+        public async Task<int> GetOtro()
+        {
+            SqlParameter u = new SqlParameter("@USUARIO", SqlDbType.NVarChar, 50);
+            u.Value = "spank1";
+            SqlParameter p = new SqlParameter("@PASS", SqlDbType.NVarChar, 50);
+            p.Value = "spank666";
+            SqlParameter ui = new SqlParameter("@UserId", SqlDbType.Int);
+            ui.Direction = ParameterDirection.Output;
+            SqlParameter uo = new SqlParameter("@User", SqlDbType.NVarChar, 50);
+            uo.Direction = ParameterDirection.Output;
+            await db.Database.ExecuteSqlCommandAsync("SP_USERS_LOGIN @USUARIO,@PASS,@UserId OUTPUT",u,p,ui);
+            return (int)ui.Value;
         }
     }
 }

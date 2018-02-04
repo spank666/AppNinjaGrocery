@@ -13,5 +13,7 @@ namespace AppNinja.Service.Service
         int GetLogin();
         //List<SP_USERS_QUERY_Result> GetUsersListAsync();
         Task<List<SP_USERS_QUERY_Result>> GetUsersListAsync(int Id);
+
+        Task<int> GetOtro();
     }
 }
