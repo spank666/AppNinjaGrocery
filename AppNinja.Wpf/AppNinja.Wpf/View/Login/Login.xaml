@@ -1,0 +1,38 @@
+﻿<Window x:Class="AppNinja.Wpf.View.Login.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppNinja.Wpf.View.Login"
+        mc:Ignorable="d"
+        xmlns:xaml="clr-namespace:AppNinja.Wpf.Binding"
+        xmlns:viewmodel="clr-namespace:AppNinja.Wpf.ViewModel"
+        Title=" Ninja Grocery - Inicio de Sesión" Width="800" Height="600" MinWidth="800" MinHeight="600" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="/Static/logo/app_ninja.png">
+    <Window.DataContext>
+        <viewmodel:LoginVM/>
+    </Window.DataContext>
+    <Grid Background="#FF22262E">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="Row1" Height="80*"/>
+            <RowDefinition x:Name="Row2" Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0">
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,0" VerticalAlignment="Center" Width="310">
+                <Image Source="/Static/logo/logo.png" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Center" Width="230" Height="53" OpacityMask="Black"/>
+                <StackPanel Background="White" Margin="15,0">
+                    <Label Content="Usuario" Margin="15,15,18,0" Foreground="#FF232323" FontSize="14" Padding="0,0,5,3"/>
+                    <TextBox Text="{Binding UserName}" x:Name="UserName" Style="{Binding UserStyle}" IsEnabled="{Binding EnableButton}"/>
+                    <Label Content="Debes ingresar un nombre de Usuario" Margin="15,0" Background="#FFCC324B" Foreground="White" Height="32" x:Name="UserRequired" Visibility="{Binding UserErrorVisibility}" VerticalContentAlignment="Center" Padding="10,5"/>
+
+                    <Label Content="Contraseña" Margin="15,15,15,0" Foreground="#FF232323" FontSize="14" Padding="0,0,5,3"/>
+                    <PasswordBox xaml:Secure.Password="{Binding PasswordName}" Style="{Binding PasswordStyle}" PasswordChar="•" FontWeight="Bold" x:Name="PasswordName" IsEnabled="{Binding EnableButton}"/>
+                    <Label Content="Debes ingresar una Contraseña" Margin="15,0" Background="#FFCC324B" Foreground="White" Height="32" x:Name="PasswordRequired" Visibility="{Binding PasswordErrorVisibility}" VerticalContentAlignment="Center" Padding="10,5"/>
+
+                    <Button Content="Entrar" Style="{StaticResource NormalButtonStyle}" Command="{Binding LoginCommand}" IsEnabled="{Binding EnableButton}"/>
+                    <!--Click="Login_Click"-->
+                </StackPanel>
+                <Label Content="Copyright © 2017 AppNinja." Margin="0,15,0,0" HorizontalContentAlignment="Center" Foreground="#FF717D97"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

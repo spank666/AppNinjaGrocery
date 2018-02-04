@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GROCERY_DB_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="RowId" />
+    </Key>
+    <Property Name="RowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InsertedById" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedById" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="int" Nullable="false" />
+    <Property Name="EnabledSystem" Type="int" Nullable="false" />
+    <Property Name="USUARIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PASS" Type="binary" MaxLength="64" Nullable="false" />
+    <Property Name="SALT" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ID_NIVEL" Type="int" Nullable="false" />
+    <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="APELLIDO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CORREO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CALLE" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="COLONIA" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="ESTADO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TELEFONO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FOTO" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Function Name="SP_USERS_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USUARIO" Type="nvarchar" Mode="In" />
+    <Parameter Name="PASS" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="InOut" />
+    <Parameter Name="User" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="SP_USERS_QUERY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InsertedById" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="GROCERY_DB_ModelStoreContainer">
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

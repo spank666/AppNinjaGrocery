@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GROCERY_DB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="RowId" />
+    </Key>
+    <Property Name="RowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InsertedById" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="Int32" Nullable="false" />
+    <Property Name="EnabledSystem" Type="Int32" Nullable="false" />
+    <Property Name="USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PASS" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
+    <Property Name="SALT" Type="Guid" Nullable="false" />
+    <Property Name="ID_NIVEL" Type="Int32" Nullable="false" />
+    <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CORREO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CALLE" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="COLONIA" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FOTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="GROCERY_DB_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USERS" EntityType="Self.USERS" />
+    <FunctionImport Name="SP_USERS_LOGIN">
+      <Parameter Name="USUARIO" Mode="In" Type="String" />
+      <Parameter Name="PASS" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="InOut" Type="Int32" />
+      <Parameter Name="User" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_USERS_QUERY" ReturnType="Collection(GROCERY_DB_Model.SP_USERS_QUERY_Result)">
+      <Parameter Name="InsertedById" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_USERS_QUERY_Result">
+    <Property Type="Int32" Name="RowId" Nullable="false" />
+    <Property Type="Int32" Name="EnabledSystem" Nullable="false" />
+    <Property Type="String" Name="USUARIO" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ID_NIVEL" Nullable="false" />
+    <Property Type="Int32" Name="ID_SUCURSAL" Nullable="false" />
+    <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="APELLIDO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CORREO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CALLE" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="COLONIA" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TELEFONO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FOTO" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>
